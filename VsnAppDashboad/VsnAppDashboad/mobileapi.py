@@ -6,11 +6,16 @@ from VsnAppDashboad.models import Session, Imageslink
 @app.route('/create_session', methods=['POST'])
 def create_session():
     folder_name = request.form.get('folder_name')
+    license_number = request.form.get('car_number')
+    date_of_check = request.form.get('date_of_check')
+    garage_name = request.form.get('garage_name')
+    apriser_name = request.form.get('apriser_name')
+    garage_phone = request.form.get('garage_phone')
 
     session = Session.query.filter_by(googleFolder=folder_name).first()
 
     if not session:
-        new_session = Session(googleFolder=folder_name)
+        new_session = Session(googleFolder=folder_name, garage_name = garage_name)
         db.session.add(new_session)
         db.session.commit()
         return jsonify (msg = "Success"),200

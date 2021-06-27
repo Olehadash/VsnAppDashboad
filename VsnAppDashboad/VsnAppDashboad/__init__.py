@@ -31,7 +31,7 @@ from VsnAppDashboad.customizemodels import MyModelView, UserView, SessionView
 # Create admin
 admin = flask_admin.Admin(
     app,
-    'VSN Dashboard',
+    'VSM Dashboard',
     base_template='my_master.html',
     template_mode='bootstrap4',
 )

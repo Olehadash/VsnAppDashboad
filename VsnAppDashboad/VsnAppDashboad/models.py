@@ -50,15 +50,15 @@ class User(db.Model, UserMixin):
 
 class Session(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    license_number = db.Column(db.Integer)
-    car_type = db.Column(db.String(255))
+    license_number = db.Column(db.Integer) #номер машины
+    car_type = db.Column(db.String(255))#----
     apriser_name = db.Column(db.String(255))
-    playce_of_check = db.Column(db.String(255))
-    date_of_entertainment = db.Column(db.DateTime())
+    playce_of_check = db.Column(db.String(255))#-----
+    date_of_entertainment = db.Column(db.DateTime())#-----
     date_of_check = db.Column(db.DateTime())
-    name_insurance = db.Column(db.String(255))
-    agent_name = db.Column(db.String(255))
-    agent_phone = db.Column(db.String(255))
+    name_insurance = db.Column(db.String(255))#----
+    agent_name = db.Column(db.String(255))#----
+    agent_phone = db.Column(db.String(255))#----
     garage_name = db.Column(db.String(255))
     garage_phone = db.Column(db.String(255))
     googleFolder = db.Column(db.String(255))
