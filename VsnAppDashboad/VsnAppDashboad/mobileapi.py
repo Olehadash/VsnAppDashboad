@@ -1,5 +1,5 @@
 from VsnAppDashboad import app, db
-from flask import Flask
+from flask import Flask, request, jsonify
 from VsnAppDashboad.models import Session, Imageslink
 
 
@@ -15,7 +15,7 @@ def create_session():
     session = Session.query.filter_by(googleFolder=folder_name).first()
 
     if not session:
-        new_session = Session(googleFolder=folder_name, garage_name = garage_name)
+        new_session = Session(googleFolder=folder_name, garage_name = garage_name, license_number = license_number, date_of_check = date_of_check, apriser_name = apriser_name, garage_phone=garage_phone)
         db.session.add(new_session)
         db.session.commit()
         return jsonify (msg = "Success"),200
