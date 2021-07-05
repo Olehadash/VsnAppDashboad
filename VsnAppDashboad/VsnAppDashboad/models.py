@@ -63,7 +63,7 @@ class Session(db.Model):
     garage_phone = db.Column(db.String(255))
     googleFolder = db.Column(db.String(255))
     images = db.relationship('Session', secondary=image_session,
-                            backref=db.backref('session', lazy='dynamic'))
+                            backref=db.backref('session', lazy=True))
     
 
     def __str__(self):

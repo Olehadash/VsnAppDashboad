@@ -1,13 +1,13 @@
 from VsnAppDashboad import app, db
 from flask import Flask, request, jsonify
 from VsnAppDashboad.models import Session, Imageslink
-
+from datetime import datetime
 
 @app.route('/create_session', methods=['POST'])
 def create_session():
     folder_name = request.form.get('folder_name')
     license_number = request.form.get('car_number')
-    date_of_check = request.form.get('date_of_check')
+    date_of_check = datetime.strptime(request.form.get('date_of_check'), '%Y-%m-%d_%H-%M-%S')
     garage_name = request.form.get('garage_name')
     apriser_name = request.form.get('apriser_name')
     garage_phone = request.form.get('garage_phone')
