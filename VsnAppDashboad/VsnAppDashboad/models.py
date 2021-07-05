@@ -50,7 +50,7 @@ class User(db.Model, UserMixin):
 
 class Session(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    license_number = db.Column(db.Integer) #номер машины
+    license_number = db.Column(db.String(255)) #номер машины
     car_type = db.Column(db.String(255))#----
     apriser_name = db.Column(db.String(255))
     playce_of_check = db.Column(db.String(255))#-----
@@ -62,8 +62,8 @@ class Session(db.Model):
     garage_name = db.Column(db.String(255))
     garage_phone = db.Column(db.String(255))
     googleFolder = db.Column(db.String(255))
-    images = db.relationship('Session', secondary=image_session,
-                            backref=db.backref('session', lazy=True))
+    images = db.relationship('Imageslink', secondary=image_session,
+                            backref=db.backref('sessions', lazy='dynamic'))
     
 
     def __str__(self):
@@ -72,7 +72,7 @@ class Session(db.Model):
 
 class Imageslink(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    link = db.Column(db.String(255))
+    link = db.Column(db.String())
     
 
     def __str__(self):

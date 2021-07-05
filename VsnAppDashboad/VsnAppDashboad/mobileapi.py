@@ -28,18 +28,23 @@ def add_session():
     image_link = request.form.get('image_link')
     folder_name = request.form.get('folder_name')
 
-    session = Session.query.filter_by(googleFolder=folder_name).first()
-
-    if not session:
-        return jsonify (msg = "Session not Exist"), 402
+    _session = Session.query.filter_by(googleFolder=folder_name).first()
     
+    if not _session:
+        return jsonify (msg = "Session not Exist"), 401
+
+    print ('Session exist -----------------')
     imag = Imageslink.query.filter_by(link = image_link).first()
 
     if not imag:
         imag_new = Imageslink(link = image_link)
+        print ('Image start -----------------' + _session.googleFolder)
         db.session.add(imag_new)
-        session.images.append(imag_new)
+        print ('Image added -----------------')
+        _session.images.append(imag_new)
+        print ('Image append -----------------')
         db.session.commit()
+        print ('commit add -----------------')
         return jsonify (msg = "Success"),200
 
     return jsonify (msg = "Allreaddy exist"),200
