@@ -12,6 +12,8 @@ from flask_admin import helpers as admin_helpers
 from flask_admin import BaseView, expose, Admin
 from wtforms import PasswordField, ValidationError
 from jinja2 import Markup
+from VsnAppDashboad.models import Imageslink
+import wtforms as wtf
 
 
 # Create customized model view class
@@ -58,9 +60,26 @@ class UserView(MyModelView):
     }
 
 class SessionView(MyModelView):
+
+    def _image_formatter(view, context, model, name):
+        value = u"<div style = 'overflow: auto;  height:200px;'>"
+        for img in model.images:
+            value += u"<a href='%s'>%s</a><br>" % (img.link, img.link)
+        value += "</div>"
+        return Markup(
+            value
+        ) if model.images else ""
+
+    column_hide_backrefs = False
+    #inline_models = (Imageslink,)
+    column_list = ('license_number','car_type', 'apriser_name', 'playce_of_check', 'date_of_entertainment', 'date_of_check', 'name_insurance', 'agent_name','agent_phone', 'garage_name', 'garage_phone', 'googleFolder','images')
     form_columns = ['license_number','car_type', 'apriser_name', 'playce_of_check', 'date_of_entertainment', 'date_of_check', 'name_insurance', 'agent_name','agent_phone', 'garage_name', 'garage_phone', 'googleFolder', 'images']
-    column_labels = dict(license_number='מספר רישוי', car_type="סוג רכב/דגם הרכב", apriser_name = "שם השמאי", playce_of_check='מקום הבדיקה', date_of_entertainment = 'תאריך הארוע', date_of_check = 'תאריך בדיקה הרכב', name_insurance = 'חברת הבדיקה', agent_name = 'שם מבוטח', agent_phone = 'פלאפון מבוטח', garage_name = 'שם הםוכן', garage_phone = 'פלאפון הםוכן', googleFolder = 'Google Folder', images= 'Images')
+    column_labels = dict(license_number='מספר רישוי', car_type="סוג רכב/דגם הרכב", apriser_name = "שם השמאי", playce_of_check='מקום הבדיקה', date_of_entertainment = 'תאריך הארוע', date_of_check = 'תאריך בדיקה הרכב', name_insurance = 'חברת הבדיקה', agent_name = 'שם מבוטח', agent_phone = 'פלאפון מבוטח', garage_name = 'שם הםוכן', garage_phone = 'פלאפון הםוכן', googleFolder = 'Google Folder', images= 'תמונות')
     column_editable_list = ['license_number',  'apriser_name', 'name_insurance']
     column_searchable_list = column_editable_list
+    column_formatters = {
+        'images': _image_formatter,
+    }
+    #column_select_related_list = ('images')
 
 
