@@ -70,6 +70,11 @@ class SessionView(MyModelView):
             value
         ) if model.images else ""
 
+    def _width_count (view, context, model, name):
+        return Markup(
+            "<dev style = 'width: 20%'></dev>"
+        )
+
     column_hide_backrefs = False
     #inline_models = (Imageslink,)
     column_list = ('license_number','car_type', 'apriser_name', 'playce_of_check', 'date_of_entertainment', 'date_of_check', 'name_insurance', 'agent_name','agent_phone', 'garage_name', 'garage_phone', 'googleFolder','images')
