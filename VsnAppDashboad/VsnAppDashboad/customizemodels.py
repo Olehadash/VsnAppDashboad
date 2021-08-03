@@ -80,7 +80,7 @@ class SessionView(MyModelView):
     column_list = ('license_number','car_type', 'apriser_name', 'playce_of_check', 'date_of_entertainment', 'date_of_check', 'name_insurance', 'agent_name','agent_phone', 'garage_name', 'garage_phone', 'googleFolder','images')
     form_columns = ['license_number','car_type', 'apriser_name', 'playce_of_check', 'date_of_entertainment', 'date_of_check', 'name_insurance', 'agent_name','agent_phone', 'garage_name', 'garage_phone', 'googleFolder', 'images']
     column_labels = dict(license_number='מספר רישוי', car_type="סוג רכב/דגם הרכב", apriser_name = "שם השמאי", playce_of_check='מקום הבדיקה', date_of_entertainment = 'תאריך הארוע', date_of_check = 'תאריך בדיקה הרכב', name_insurance = 'חברת הבדיקה', agent_name = 'שם מבוטח', agent_phone = 'פלאפון מבוטח', garage_name = 'שם הםוכן', garage_phone = 'פלאפון הםוכן', googleFolder = 'Google Folder', images= 'תמונות')
-    column_editable_list = ['license_number',  'apriser_name', 'name_insurance']
+    column_editable_list = ['license_number','car_type', 'apriser_name', 'playce_of_check', 'date_of_entertainment', 'date_of_check', 'name_insurance', 'agent_name','agent_phone', 'garage_name', 'garage_phone', 'googleFolder']
     column_searchable_list = column_editable_list
     column_formatters = {
         'images': _image_formatter,
